@@ -28,6 +28,13 @@ export const routes: Routes = [
             (m) => m.SettingsPage
           ),
       },
+      {
+        path: 'forms',
+        loadComponent: () =>
+          import('./domains/forms/components/forms-page/forms-page').then(
+            (m) => m.FormsPage
+          ),
+      },
     ],
   },
   { path: '**', redirectTo: '' },
