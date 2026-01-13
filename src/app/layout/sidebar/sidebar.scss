@@ -1,9 +1,10 @@
 .sidebar {
   display: flex;
   flex-direction: column;
-  background-color: #16213e;
-  color: white;
+  background-color: var(--color-sidebar);
+  color: var(--color-text-inverse);
   height: 100%;
+  transition: var(--transition-theme);
 
   &__nav {
     flex: 1;
@@ -22,13 +23,13 @@
 
     &:hover {
       background-color: rgba(255, 255, 255, 0.05);
-      color: white;
+      color: var(--color-text-inverse);
     }
 
     &--active {
       background-color: rgba(255, 255, 255, 0.1);
-      color: white;
-      border-left-color: #667eea;
+      color: var(--color-text-inverse);
+      border-left-color: var(--color-accent);
     }
   }
 
@@ -42,11 +43,11 @@
 
   &__footer {
     padding: 1rem 1.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid var(--color-border);
   }
 
   &__version {
     font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.4);
+    color: var(--color-text-muted);
   }
 }

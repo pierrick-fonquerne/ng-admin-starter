@@ -7,11 +7,19 @@
   <div class="header__spacer"></div>
 
   <nav class="header__nav">
+    <button
+      class="header__nav-item header__theme-toggle"
+      (click)="themeService.toggle()"
+      [title]="themeService.isDark() ? 'Switch to light mode' : 'Switch to dark mode'"
+    >
+      @if (themeService.isDark()) {
+        ☀️
+      } @else {
+        🌙
+      }
+    </button>
     <button class="header__nav-item" title="Notifications">
       🔔
-    </button>
-    <button class="header__nav-item" title="Settings">
-      ⚙️
     </button>
     <div class="header__user">
       <span class="header__user-avatar">PF</span>
