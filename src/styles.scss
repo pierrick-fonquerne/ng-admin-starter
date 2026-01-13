@@ -1,4 +1,57 @@
 // ============================================
+// Theme Variables (CSS Custom Properties)
+// ============================================
+
+:root {
+  // Colors - Light theme (default)
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f5f5f5;
+  --color-bg-tertiary: #e5e5e5;
+
+  --color-surface: #ffffff;
+  --color-surface-hover: #f0f0f0;
+
+  --color-header: #1a1a2e;
+  --color-sidebar: #16213e;
+
+  --color-text-primary: #1a1a2e;
+  --color-text-secondary: #666666;
+  --color-text-muted: #999999;
+  --color-text-inverse: #ffffff;
+
+  --color-border: rgba(0, 0, 0, 0.1);
+  --color-shadow: rgba(0, 0, 0, 0.1);
+
+  --color-accent: #667eea;
+  --color-accent-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+  // Transitions
+  --transition-theme: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+[data-theme="dark"] {
+  // Colors - Dark theme
+  --color-bg-primary: #0f0f1a;
+  --color-bg-secondary: #1a1a2e;
+  --color-bg-tertiary: #252542;
+
+  --color-surface: #252542;
+  --color-surface-hover: #2f2f52;
+
+  --color-header: #0f0f1a;
+  --color-sidebar: #12121f;
+
+  --color-text-primary: #f5f5f5;
+  --color-text-secondary: #b0b0b0;
+  --color-text-muted: #808080;
+  // Note: text-inverse stays white because header/sidebar remain dark in both themes
+  --color-text-inverse: #ffffff;
+
+  --color-border: rgba(255, 255, 255, 0.15);
+  --color-shadow: rgba(0, 0, 0, 0.4);
+}
+
+// ============================================
 // CSS Reset (Modern)
 // ============================================
 
@@ -24,7 +77,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.5;
-  color: #333;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-secondary);
+  transition: var(--transition-theme);
 }
 
 img,
@@ -56,12 +111,12 @@ a {
   &__title {
     font-size: 1.75rem;
     font-weight: 600;
-    color: #1a1a2e;
+    color: var(--color-text-primary);
     margin: 0;
   }
 
   &__subtitle {
-    color: #666;
+    color: var(--color-text-secondary);
     margin-top: 0.5rem;
   }
 }
@@ -73,9 +128,10 @@ a {
   justify-content: center;
   padding: 4rem 2rem;
   margin-top: 2rem;
-  background: white;
+  background: var(--color-surface);
   border-radius: 1rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px var(--color-shadow);
+  transition: var(--transition-theme);
 
   &__icon {
     font-size: 4rem;
@@ -83,7 +139,7 @@ a {
   }
 
   &__text {
-    color: #666;
+    color: var(--color-text-secondary);
     font-size: 1.125rem;
   }
 }

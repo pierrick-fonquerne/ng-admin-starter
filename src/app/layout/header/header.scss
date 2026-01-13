@@ -2,9 +2,10 @@
   display: flex;
   align-items: center;
   padding: 0 1.5rem;
-  background-color: #1a1a2e;
-  color: white;
+  background-color: var(--color-header);
+  color: var(--color-text-inverse);
   height: 100%;
+  transition: var(--transition-theme);
 
   &__logo {
     display: flex;
@@ -31,7 +32,7 @@
   &__nav-item {
     background: transparent;
     border: none;
-    color: white;
+    color: var(--color-text-inverse);
     font-size: 1.25rem;
     padding: 0.5rem;
     cursor: pointer;
@@ -41,6 +42,10 @@
     &:hover {
       background-color: rgba(255, 255, 255, 0.1);
     }
+  }
+
+  &__theme-toggle {
+    font-size: 1.125rem;
   }
 
   &__user {
@@ -62,7 +67,7 @@
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--color-accent-gradient);
     display: flex;
     align-items: center;
     justify-content: center;
