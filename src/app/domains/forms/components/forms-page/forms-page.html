@@ -1,0 +1,242 @@
+<div class="forms-page">
+  <h1 class="page__title">Forms</h1>
+  <p class="page__subtitle">Showcase of form components with Reactive Forms</p>
+
+  <!-- Basic Inputs Section -->
+  <section class="form-section">
+    <h2 class="form-section__title">Basic Inputs</h2>
+    <form [formGroup]="basicForm" (ngSubmit)="onBasicSubmit()" class="form">
+      <div class="form__row">
+        <div class="form__group">
+          <label class="form__label" for="fullName">Full Name</label>
+          <input
+            type="text"
+            id="fullName"
+            class="form__input"
+            formControlName="fullName"
+            placeholder="John Doe"
+          />
+        </div>
+        <div class="form__group">
+          <label class="form__label" for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            class="form__input"
+            formControlName="email"
+            placeholder="john@example.com"
+          />
+        </div>
+      </div>
+      <div class="form__row">
+        <div class="form__group">
+          <label class="form__label" for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            class="form__input"
+            formControlName="password"
+            placeholder="••••••••"
+          />
+        </div>
+        <div class="form__group">
+          <label class="form__label" for="age">Age</label>
+          <input
+            type="number"
+            id="age"
+            class="form__input"
+            formControlName="age"
+            placeholder="25"
+          />
+        </div>
+      </div>
+      <div class="form__group">
+        <label class="form__label" for="bio">Biography</label>
+        <textarea
+          id="bio"
+          class="form__textarea"
+          formControlName="bio"
+          placeholder="Tell us about yourself..."
+          rows="4"
+        ></textarea>
+      </div>
+      <div class="form__actions">
+        <button type="submit" class="btn btn--primary">Submit</button>
+        <button type="button" class="btn btn--secondary" (click)="basicForm.reset()">Reset</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- Selection Section -->
+  <section class="form-section">
+    <h2 class="form-section__title">Selection Controls</h2>
+    <form [formGroup]="selectionForm" (ngSubmit)="onSelectionSubmit()" class="form">
+      <div class="form__row">
+        <div class="form__group">
+          <label class="form__label" for="country">Country</label>
+          <select id="country" class="form__select" formControlName="country">
+            <option value="">Select a country</option>
+            @for (country of countries; track country.value) {
+              <option [value]="country.value">{{ country.label }}</option>
+            }
+          </select>
+        </div>
+        <div class="form__group">
+          <label class="form__label">Role</label>
+          <div class="form__radio-group">
+            @for (role of roles; track role.value) {
+              <label class="form__radio">
+                <input type="radio" formControlName="role" [value]="role.value" />
+                <span class="form__radio-mark"></span>
+                {{ role.label }}
+              </label>
+            }
+          </div>
+        </div>
+      </div>
+      <div class="form__row">
+        <div class="form__group">
+          <label class="form__label">Preferences</label>
+          <div class="form__checkbox-group">
+            <label class="form__checkbox">
+              <input type="checkbox" formControlName="notifications" />
+              <span class="form__checkbox-mark"></span>
+              Enable notifications
+            </label>
+            <label class="form__checkbox">
+              <input type="checkbox" formControlName="newsletter" />
+              <span class="form__checkbox-mark"></span>
+              Subscribe to newsletter
+            </label>
+          </div>
+        </div>
+        <div class="form__group">
+          <label class="form__label">Theme</label>
+          <div class="form__toggle-group">
+            <label class="form__toggle">
+              <input type="checkbox" formControlName="theme"
+                [checked]="selectionForm.get('theme')?.value === 'dark'"
+                (change)="selectionForm.patchValue({ theme: $any($event.target).checked ? 'dark' : 'light' })" />
+              <span class="form__toggle-slider"></span>
+              <span class="form__toggle-label">Dark mode</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form__actions">
+        <button type="submit" class="btn btn--primary">Submit</button>
+        <button type="button" class="btn btn--secondary" (click)="selectionForm.reset()">Reset</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- Validation Section -->
+  <section class="form-section">
+    <h2 class="form-section__title">Validation</h2>
+    <form [formGroup]="validationForm" (ngSubmit)="onValidationSubmit()" class="form">
+      <div class="form__row">
+        <div class="form__group">
+          <label class="form__label" for="v-username">
+            Username <span class="form__required">*</span>
+          </label>
+          <input
+            type="text"
+            id="v-username"
+            class="form__input"
+            formControlName="username"
+            placeholder="johndoe"
+            [class.form__input--error]="validationForm.get('username')?.invalid && validationForm.get('username')?.touched"
+          />
+          @if (validationForm.get('username')?.touched && validationForm.get('username')?.errors) {
+            <div class="form__error">
+              @if (validationForm.get('username')?.errors?.['required']) {
+                Username is required
+              } @else if (validationForm.get('username')?.errors?.['minlength']) {
+                Username must be at least 3 characters
+              }
+            </div>
+          }
+        </div>
+        <div class="form__group">
+          <label class="form__label" for="v-email">
+            Email <span class="form__required">*</span>
+          </label>
+          <input
+            type="email"
+            id="v-email"
+            class="form__input"
+            formControlName="email"
+            placeholder="john@example.com"
+            [class.form__input--error]="validationForm.get('email')?.invalid && validationForm.get('email')?.touched"
+          />
+          @if (validationForm.get('email')?.touched && validationForm.get('email')?.errors) {
+            <div class="form__error">
+              @if (validationForm.get('email')?.errors?.['required']) {
+                Email is required
+              } @else if (validationForm.get('email')?.errors?.['email']) {
+                Please enter a valid email
+              }
+            </div>
+          }
+        </div>
+      </div>
+      <div class="form__row">
+        <div class="form__group">
+          <label class="form__label" for="v-password">
+            Password <span class="form__required">*</span>
+          </label>
+          <input
+            type="password"
+            id="v-password"
+            class="form__input"
+            formControlName="password"
+            placeholder="••••••••"
+            [class.form__input--error]="validationForm.get('password')?.invalid && validationForm.get('password')?.touched"
+          />
+          @if (validationForm.get('password')?.touched && validationForm.get('password')?.errors) {
+            <div class="form__error">
+              @if (validationForm.get('password')?.errors?.['required']) {
+                Password is required
+              } @else if (validationForm.get('password')?.errors?.['minlength']) {
+                Password must be at least 8 characters
+              }
+            </div>
+          }
+        </div>
+        <div class="form__group">
+          <label class="form__label" for="v-confirm">
+            Confirm Password <span class="form__required">*</span>
+          </label>
+          <input
+            type="password"
+            id="v-confirm"
+            class="form__input"
+            formControlName="confirmPassword"
+            placeholder="••••••••"
+            [class.form__input--error]="validationForm.get('confirmPassword')?.invalid && validationForm.get('confirmPassword')?.touched"
+          />
+          @if (validationForm.get('confirmPassword')?.touched && validationForm.get('confirmPassword')?.errors?.['required']) {
+            <div class="form__error">Please confirm your password</div>
+          }
+        </div>
+      </div>
+      <div class="form__group">
+        <label class="form__checkbox">
+          <input type="checkbox" formControlName="acceptTerms" />
+          <span class="form__checkbox-mark"></span>
+          I accept the <a href="#" class="form__link">Terms and Conditions</a>
+          <span class="form__required">*</span>
+        </label>
+        @if (validationForm.get('acceptTerms')?.touched && validationForm.get('acceptTerms')?.errors?.['required']) {
+          <div class="form__error">You must accept the terms</div>
+        }
+      </div>
+      <div class="form__actions">
+        <button type="submit" class="btn btn--primary" [disabled]="validationForm.invalid">
+          Create Account
+        </button>
+        <button type="button" class="btn btn--secondary" (click)="validationForm.reset()">Reset</button>
+      </div>
+    </form>
+  </section>
+</div>
