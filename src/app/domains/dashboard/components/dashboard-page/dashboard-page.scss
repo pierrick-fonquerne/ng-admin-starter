@@ -1,0 +1,57 @@
+.page {
+  &__title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin: 0;
+  }
+
+  &__subtitle {
+    color: #666;
+    margin-top: 0.5rem;
+  }
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+  &__icon {
+    font-size: 2rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 0.75rem;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a1a2e;
+  }
+
+  &__label {
+    font-size: 0.875rem;
+    color: #666;
+  }
+}

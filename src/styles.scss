@@ -1,1 +1,89 @@
-/* You can add global styles to this file, and also import other style files */
+// ============================================
+// CSS Reset (Modern)
+// ============================================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+  color: #333;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+// ============================================
+// Shared Styles
+// ============================================
+
+.page {
+  &__title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin: 0;
+  }
+
+  &__subtitle {
+    color: #666;
+    margin-top: 0.5rem;
+  }
+}
+
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  margin-top: 2rem;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+  &__icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+
+  &__text {
+    color: #666;
+    font-size: 1.125rem;
+  }
+}
